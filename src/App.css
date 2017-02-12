@@ -1,0 +1,57 @@
+.App {
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+  display: flex;
+  flex-direction: column;
+}
+
+.App-logo {
+  height: 60px;
+}
+
+.App-header {
+  background-color: #4b387a;
+  height: 150px;
+  padding: 20px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding-bottom: 150px;
+}
+
+.App-header h1{
+  font-size: 36px;
+  margin: 0;
+}
+
+.App-header h3{
+  font-size: 18px;
+  font-weight: normal;
+  margin: 0;
+  margin-top: 15px;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+.Player{
+  width: 90%;
+  background-color: #ccc;
+  align-self: center;
+  display: flex;
+  height: 500px;
+  transform: translateY(-125px);
+  border-radius: 2px;
+}
+
+.Player .StreamList-container, .Player .TwitchChat{
+  flex: 1;
+}
+
+.Player .EmbedStream{
+  flex: 4;
+  background-color: red;
+}
