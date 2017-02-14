@@ -10,7 +10,6 @@
 }
 
 .App-header {
-  background-color: #4b387a;
   height: 150px;
   padding: 20px;
   color: white;
@@ -19,6 +18,9 @@
   justify-content: center;
   flex-direction: column;
   padding-bottom: 150px;
+  background-color: #4b387a;
+  background-image: linear-gradient(-225deg, #65379B 0%, #886AEA 53%, #6457C6 100%);
+  text-shadow: 0px 2px 9px rgba(0,0,0,0.35)
 }
 
 .App-header h1{
@@ -39,19 +41,109 @@
 
 .Player{
   width: 90%;
-  background-color: #ccc;
+  position: relative;
+  background-color: #efeef1;
   align-self: center;
   display: flex;
-  height: 500px;
+  height: 600px;
   transform: translateY(-125px);
   border-radius: 2px;
+  /*box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.25);*/
+}
+
+.Player .player-shadow{
+  position: absolute;
+  top: 5%;
+  left: 5%;
+  width: 90%;
+  height: 95%;
+  box-shadow: 0 4px 14px 0 rgba(98,94,226,.1), 0 0 70px 20px rgba(98,94,226,.1);
+}
+
+.Player .player-content{
+  display: flex;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.Player .player-background{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #efeef1;
+  border-radius: .125rem;
 }
 
 .Player .StreamList-container, .Player .TwitchChat{
   flex: 1;
+  min-width: 250px;
 }
 
 .Player .EmbedStream{
-  flex: 4;
-  background-color: red;
+  flex:4;
+  background-color: #000;
+}
+
+.SidePlayer .StreamList-header{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 45px;
+  background-color: #886AEA;
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+
+.stream-entry{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 0.9rem;
+  padding: 10px;
+  cursor: pointer;
+  background-color: #efeef1;
+  transition: all 0.25s ease-in-out;
+}
+
+.stream-entry--active{
+  background-color: rgba(136, 106, 234, 0.3);
+}
+
+.stream-entry:hover{
+  background-color: #ddd;
+}
+
+  .stream-img{
+    width: 25px;
+    height: 34px;
+  }
+  
+  .stream-column{
+    flex: 1;
+    text-align: left;
+    padding-left: 10px;
+  }
+  
+  .streamer-name{
+    font-weight: bold;
+  }
+  
+  .streamer-title{
+    color: #666;
+    font-size: 0.8rem;
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+iframe{
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background-color: #000;
 }
