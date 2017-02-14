@@ -9,7 +9,7 @@ class Header extends Component {
       <div className="App-header">
         {/* <img src={logo_twitch} className="App-logo" alt="logo" /> */}
         <h1>Twitch Switch</h1>
-        <h3>Watch your favorite twitch streamers</h3>
+        <h3>Easily switch between your favorite Twitch channels</h3>
       </div>
     )
   }
