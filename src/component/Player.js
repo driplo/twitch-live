@@ -45,15 +45,15 @@ class Player extends Component {
           </div>
           <div className="EmbedStream">
             <iframe
-                src="http://player.twitch.tv/?channel=zeaeazeclypsiatvlol"
-                frameborder="0"
+                src="http://player.twitch.tv/?channel=eclypsiatvlol"
+                frameBorder="0"
                 scrolling="no"
-                allowFullscreen="true">
+                allowFullScreen="true">
             </iframe>
           </div>
           <div className="TwitchChat SidePlayer">
             <iframe 
-              frameborder="0" 
+              frameBorder="0" 
               scrolling="no" 
               id="chat_embed" 
               src="http://www.twitch.tv/eclypsiatvlol/chat">
