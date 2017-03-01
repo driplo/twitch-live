@@ -71,6 +71,7 @@
   height: 600px;
   transform: translateY(-125px);
   border-radius: 2px;
+  overflow: hidden;
 }
 
 .Player .player-shadow{
@@ -142,8 +143,8 @@
 }
 
   .stream-img{
-    width: 25px;
-    height: 34px;
+    width: 30px;
+    height: 30px;
   }
   
   .stream-column{
@@ -155,7 +156,18 @@
   
   .streamer-name{
     font-weight: bold;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
+  
+  .streamer-game{
+    padding-left: 10px;
+    color: #886AEA;
+    font-weight: normal;
+    font-size: 11px;
+  }
+  
   
   .streamer-title{
     color: #666;

@@ -4,7 +4,7 @@ import LoginBtn from './LoginBtn';
 class Header extends Component {
 
   render() {
-
+    
     return(
       <div className="App-header">
         <div className="header-title">
@@ -13,7 +13,7 @@ class Header extends Component {
         </div>
         
         <div className="header-account">
-          <LoginBtn />        
+          <LoginBtn username={this.props.username} />
         </div>
       </div>
     )

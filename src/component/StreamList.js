@@ -1,42 +1,16 @@
 import React, { Component } from 'react';
-import 'whatwg-fetch';
+import StreamEntry from './StreamEntry';
 
 class StreamList extends Component {
   
-  state = {
-    streams: [],
-    loading: true,
-  }
-  
-  componentWillMount(){
-    const AUTH_TOKEN = this.props.token;
-    
-    const followedStreams = `https://api.twitch.tv/kraken/streams/followed?oauth_token=${AUTH_TOKEN}`;
-    
-    fetch(followedStreams)
-      .then( response => { 
-        return response.json(); 
-      }).then(({streams}) => {
-        console.log(streams);
-        this.setState({
-          streams: streams,
-          loading: false
-        })
-      }).catch(function(ex) {
-        console.log('parsing failed', ex)
-      });
-  }
-  
   render() {
-    
-    if (this.state.loading === false){
+
+    if (this.props.streams){
       return(
-        <div>
-          <ul>
-          {this.state.streams.map(stream =>
-            <li key={stream.channel._id}>{stream.channel.display_name}</li>
+        <div className="StreamList">
+          {this.props.streams.map(stream =>
+            <StreamEntry stream={stream} key={stream.channel._id} />
            )}
-          </ul>
         </div>
       )
     } else {
