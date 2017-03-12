@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 
 class TwitchPlayer extends Component {
-
+  
   render() {
-    const URL_STREAM = `http://player.twitch.tv/?channel=${this.props.livestream}`;
-    if (URL_STREAM !== ''){
+    
+    const URL_STREAM = `http://player.twitch.tv/?autoplay=false&channel=${this.props.livestream}`;
+
+    if (this.props.livestream !== ''){
       return(
         <iframe
           src={URL_STREAM}
@@ -15,11 +17,13 @@ class TwitchPlayer extends Component {
       )
     } else {
       return(
-        <div>
-          Loading or no one live...
+        <div className="empty-stream">
+          <img src="https://web-cdn.ttvnw.net/images/xarth/dead_glitch.png" alt="Offline" /><br/>
+          Seems like everyone is sleeping.
         </div>
       )
     }
+
   }
 }
 

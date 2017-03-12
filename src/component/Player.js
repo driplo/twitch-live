@@ -7,28 +7,29 @@ class Player extends Component {
   
   state = {
     streams: [],
-    currentStream: '',
-    loading: true,
+    currentStream: ''
   }
   
-  componentWillMount(){
-    const AUTH_TOKEN = this.props.token;
-    
-    const followedStreams = `https://api.twitch.tv/kraken/streams/followed?oauth_token=${AUTH_TOKEN}`;
-    
-    fetch(followedStreams)
-      .then( response => { 
-        return response.json(); 
-      }).then(({streams}) => {
-        console.log(streams);
-        this.setState({
-          streams: streams,
-          currentStream: streams[0].channel.name,
-          loading: false
-        })
-      }).catch(function(ex) {
-        console.log('parsing failed', ex)
-      });
+  componentWillMount(){  
+    if (this.props.token !== ''){
+      const AUTH_TOKEN = this.props.token;
+      
+      const followedStreams = `https://api.twitch.tv/kraken/streams/followed?oauth_token=${AUTH_TOKEN}`;
+      
+      fetch(followedStreams)
+        .then( response => { 
+          return response.json(); 
+        }).then(({streams}) => {
+          console.log(streams);
+          this.setState({
+            streams: streams,
+            currentStream: streams[0].channel.name,
+            loading: false
+          })
+        }).catch(function(ex) {
+          console.log('parsing failed', ex)
+        });
+    }
   }
   
 

@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 
-import LiveStream from './component/LiveStream';
 import Header from './component/Header';
 import Player from './component/Player';
-import StreamList from './component/StreamList';
 
 class App extends Component {
   
@@ -21,7 +19,6 @@ class App extends Component {
       const AUTH_TOKEN = GetURLParameter('access_token')
             
       this.setState({
-        userLogged: true,
         userToken: AUTH_TOKEN
       });
       
@@ -33,7 +30,6 @@ class App extends Component {
         }).then(response => {
                   
           this.setState({
-            userLogged: true,
             userInfo: response,
             username: response.name,
             loading: false
@@ -49,7 +45,7 @@ class App extends Component {
     return (
       <div className="App">
         <Header username={this.state.username}/>
-        <Player token={this.state.userToken}/>
+        <Player token={this.state.userToken} />
       </div>
     );
   }
