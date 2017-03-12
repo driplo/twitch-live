@@ -5,9 +5,12 @@ import TwitchChat from './TwitchChat';
 
 class Player extends Component {
   
-  state = {
-    streams: [],
-    currentStream: ''
+  constructor(props) {
+    super(props)
+    this.state = {
+      streams: [],
+      currentStream: ''
+    }
   }
   
   componentWillMount(){  

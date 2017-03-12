@@ -4,11 +4,14 @@ class StreamList extends Component {
   
   constructor(props) {
     super(props);
-    this.state = {activeIndex: 0};
+    this.state = {
+      activeIndex: 0
+    };
   }
   
   handleItemClick(index) {
     this.setState({activeIndex: index});
+    console.log(this.props.streams[index]);
   }
   
   render() {
