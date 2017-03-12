@@ -141,7 +141,7 @@
   padding: 10px;
   cursor: pointer;
   background-color: #efeef1;
-  transition: all 0.25s ease-in-out;
+  transition: all 0.15s ease-in-out;
 }
 
 .stream-entry--active{
@@ -150,6 +150,10 @@
 
 .stream-entry:hover{
   background-color: #ddd;
+}
+
+.stream-entry--active:hover{
+  background-color: rgba(136, 106, 234, 0.3);
 }
 
   .stream-img{
