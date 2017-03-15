@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import StreamList from './StreamList';
 import TwitchPlayer from './TwitchPlayer';
 import TwitchChat from './TwitchChat';
+import { connect } from 'react-redux'
 
 class Player extends Component {
   
@@ -14,6 +15,7 @@ class Player extends Component {
   }
   
   componentWillMount(){  
+        
     if (this.props.token !== ''){
       const AUTH_TOKEN = this.props.token;
       
@@ -33,10 +35,12 @@ class Player extends Component {
           console.log('parsing failed', ex)
         });
     }
-  }
-  
+  }  
 
   render() {
+    
+    console.log(this.props.streamId);
+        
     return(
       <div className="Player">
         <div className="player-shadow"></div>
@@ -60,4 +64,4 @@ class Player extends Component {
   }
 
 }
-export default Player;
+export default connect(state => state)(Player);
