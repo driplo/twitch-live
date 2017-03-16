@@ -4,8 +4,8 @@ class TwitchPlayer extends Component {
   
   render() {
     
-    const URL_STREAM = `http://player.twitch.tv/?channel=${this.props.livestream}`;
-    
+    const URL_STREAM = `https://player.twitch.tv/?channel=${this.props.livestream}`;
+    console.log(this.props.livestream);
     switch(this.props.livestream) {
       case '':
         return(

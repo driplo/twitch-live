@@ -25,13 +25,21 @@ class Player extends Component {
         .then( response => { 
           return response.json(); 
         }).then(({streams}) => {
-          console.log(streams);
-          this.props.dispatch({ type: 'SWITCH_STREAM', payload: streams[0].channel.name });
-          this.setState({
-            streams: streams,
-            currentStream: streams[0].channel.name,
-            loading: false
-          })
+          if (streams.length > 0){
+            this.props.dispatch({ type: 'SWITCH_STREAM', payload: streams[0].channel.name });
+            this.setState({
+              streams: streams,
+              currentStream: streams[0].channel.name,
+              loading: false
+            });
+          } else {
+            this.setState({
+              streams: streams,
+              currentStream: '',
+              loading: false
+            });
+            this.props.dispatch({ type: 'SWITCH_STREAM', payload: '' });
+          }
         }).catch(function(ex) {
           console.log('parsing failed', ex)
         });

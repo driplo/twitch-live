@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class TwitchChat extends Component {
 
   render() {
-    const URL_STREAM = `http://www.twitch.tv/${this.props.livestream}/chat`;
+    const URL_STREAM = `https://www.twitch.tv/${this.props.livestream}/chat`;
     if (this.props.livestream !== '' && this.props.livestream !== undefined){
       return(
         <iframe 
