@@ -15,8 +15,8 @@ class App extends Component {
   
   componentWillMount(){
     
-    if (GetURLParameter('state') === 'logged'){
-      const AUTH_TOKEN = GetURLParameter('access_token')
+    if (GetURLParameters('state') === 'logged'){
+      const AUTH_TOKEN = GetURLParameters('access_token')
             
       this.setState({
         userToken: AUTH_TOKEN
@@ -51,12 +51,12 @@ class App extends Component {
   }
 }
 
-function GetURLParameter(sParam) {
-    var sPageURL = window.location.hash.substring(1);
+const GetURLParameters = (sParam) => {
+    const sPageURL = window.location.hash.substring(1);
 
-    var sURLVariables = sPageURL.split('&');
-    for (var i = 0; i < sURLVariables.length; i++) {
-        var sParameterName = sURLVariables[i].split('=');
+    const sURLVariables = sPageURL.split('&');
+    for (let i = 0; i < sURLVariables.length; i++) {
+        const sParameterName = sURLVariables[i].split('=');
         if (sParameterName[0] === sParam) {
             return sParameterName[1];
         }
