@@ -1,8 +1,7 @@
-const streamStore = (state = { streamId : 'gobgg' }, action) => {
+const streamStore = (state = { streamID : '' }, action) => {
   switch(action.type) {
     case 'SWITCH_STREAM':
-      state.streamId = action.payload;
-      return state;
+      return {...state, streamId: action.payload };
     default:
       return state
   }

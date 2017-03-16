@@ -4,9 +4,24 @@ class TwitchPlayer extends Component {
   
   render() {
     
-    const URL_STREAM = `http://player.twitch.tv/?autoplay=false&channel=${this.props.livestream}`;
-
-    if (this.props.livestream !== ''){
+    const URL_STREAM = `http://player.twitch.tv/?channel=${this.props.livestream}`;
+    
+    switch(this.props.livestream) {
+      case '':
+        return(
+          <div className="empty-stream">
+            <img src="https://web-cdn.ttvnw.net/images/xarth/dead_glitch.png" alt="Offline" /><br/>
+            Seems like everyone is sleeping.
+          </div>
+        )
+      case undefined:
+        return(
+          <div className="empty-stream">
+            <img src="https://web-cdn.ttvnw.net/images/xarth/dead_glitch.png" alt="Offline" /><br/>
+            Please log in.
+          </div>
+        )
+      default:
       return(
         <iframe
           src={URL_STREAM}
@@ -14,13 +29,6 @@ class TwitchPlayer extends Component {
           scrolling="no"
           allowFullScreen="true">
         </iframe>
-      )
-    } else {
-      return(
-        <div className="empty-stream">
-          <img src="https://web-cdn.ttvnw.net/images/xarth/dead_glitch.png" alt="Offline" /><br/>
-          Seems like everyone is sleeping.
-        </div>
       )
     }
 

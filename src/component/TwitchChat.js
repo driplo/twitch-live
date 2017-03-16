@@ -4,7 +4,7 @@ class TwitchChat extends Component {
 
   render() {
     const URL_STREAM = `http://www.twitch.tv/${this.props.livestream}/chat`;
-    if (this.props.livestream !== ''){
+    if (this.props.livestream !== '' && this.props.livestream !== undefined){
       return(
         <iframe 
           src={URL_STREAM}

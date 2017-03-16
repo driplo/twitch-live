@@ -28,7 +28,6 @@ class StreamList extends Component {
     this.props.dispatch({ type: 'SWITCH_STREAM', payload: this.props.streams[index].channel.name });
   }
   
-  
   render() {
     if (this.props.streams){
       return(
@@ -56,4 +55,4 @@ class StreamList extends Component {
     
 }
 
-export default connect(state => state)(StreamList);
+export default connect()(StreamList);

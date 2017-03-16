@@ -26,6 +26,7 @@ class Player extends Component {
           return response.json(); 
         }).then(({streams}) => {
           console.log(streams);
+          this.props.dispatch({ type: 'SWITCH_STREAM', payload: streams[0].channel.name });
           this.setState({
             streams: streams,
             currentStream: streams[0].channel.name,
@@ -38,9 +39,7 @@ class Player extends Component {
   }  
 
   render() {
-    
-    console.log(this.props.streamId);
-        
+
     return(
       <div className="Player">
         <div className="player-shadow"></div>
@@ -53,15 +52,15 @@ class Player extends Component {
             <StreamList streams={this.state.streams}/>
           </div>
           <div className="EmbedStream">
-            <TwitchPlayer livestream={this.state.currentStream}/>
+            <TwitchPlayer livestream={this.props.streamId}/>
           </div>
           <div className="TwitchChat SidePlayer">
-            <TwitchChat livestream={this.state.currentStream}/>
+            <TwitchChat livestream={this.props.streamId}/>
           </div>
         </div>
       </div>
     )
   }
-
 }
-export default connect(state => state)(Player);
+
+export default connect(state => ({ streamId: state.streamId }))(Player);
