@@ -24,7 +24,6 @@ class StreamList extends Component {
   
   handleItemClick = (index) => {
     this.setState({activeIndex: index});
-    console.log(this.props.streams[index]);
     this.props.dispatch({ type: 'SWITCH_STREAM', payload: this.props.streams[index].channel.name });
   }
   

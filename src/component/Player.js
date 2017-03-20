@@ -49,7 +49,7 @@ class Player extends Component {
   render() {
 
     return(
-      <div className="Player">
+      <section className="Player">
         <div className="player-shadow"></div>
         <div className="player-background"></div>
         <div className="player-content">
@@ -66,7 +66,7 @@ class Player extends Component {
             <TwitchChat livestream={this.props.streamId}/>
           </div>
         </div>
-      </div>
+      </section>
     )
   }
 }

@@ -1,16 +1,13 @@
 import React, { Component } from 'react';
 import TwitchLoginBtn from './Header/TwitchLoginBtn';
+import UserDropdown from './Header/UserDropdown';
 
 class LoginBtn extends Component {
 
   render() {
     if (this.props.username) {
       return (
-        <div className="user-logged">
-          <i className="material-icons">face</i>
-          <span className="username">{this.props.username}</span>
-          <i className="material-icons">arrow_drop_down</i>
-        </div>
+        <UserDropdown username={this.props.username}/>
       )
     } else {
       return (
