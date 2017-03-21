@@ -59,12 +59,8 @@ class Player extends Component {
             </div>
             <StreamList streams={this.state.streams}/>
           </div>
-          <div className="EmbedStream">
-            <TwitchPlayer livestream={this.props.streamId}/>
-          </div>
-          <div className="TwitchChat SidePlayer">
-            <TwitchChat livestream={this.props.streamId}/>
-          </div>
+          <TwitchPlayer livestream={this.props.streamId}/>
+          <TwitchChat livestream={this.props.streamId}/>
         </div>
       </section>
     )

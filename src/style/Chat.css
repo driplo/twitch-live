@@ -1,0 +1,36 @@
+.TwitchChat{
+  transition: all 0.15s ease-in;
+}
+
+.toggle-chat{
+  transition: all 0.15s ease-in;
+  z-index: 1;
+  background-color: #886AEA;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  color: #fff;
+  border-radius: 2px;
+  height: 30px;
+  width: 30px;
+  text-align: center;
+}
+
+.toggle-chat i{
+  line-height: 30px;
+}
+
+.TwitchChat.TwitchChat--collapsed{
+  min-width: 50px;
+  flex: 0;
+}
+.TwitchChat.TwitchChat--collapsed:after{
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-color: #efeef1;
+}

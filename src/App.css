@@ -134,6 +134,7 @@
 .Player .StreamList-container, .Player .TwitchChat{
   flex: 1;
   min-width: 250px;
+  position: relative;
 }
 
 .Player .EmbedStream{

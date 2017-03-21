@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import './style/Responsive.css';
 
 import Header from './component/Header';
 import Player from './component/Player';
