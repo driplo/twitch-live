@@ -6,7 +6,7 @@ class Header extends Component {
   render() {
     
     return(
-      <div className="App-header">
+      <header className="App-header">
         <div className="header-title">
           <h1>Twitch Switch</h1>
           <h3>Easily switch between your favorites Twitch channels</h3>
@@ -15,7 +15,7 @@ class Header extends Component {
         <div className="header-account">
           <LoginBtn username={this.props.username} />
         </div>
-      </div>
+      </header>
     )
   }
 

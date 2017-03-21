@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
-/* dev */
-const clientID = '7dd5puit2sck0l3q4qs8uu8snyegsu';
-const redirectURI = 'http://localhost:3000';
+import { clientID, redirectURI } from '../../config';
 
-/* gh pages */
-//const clientID = 'tykygbs99dq6e8ea8ombc0obw7kk3l';
-//const redirectURI = 'https://driplo.github.io/twitch-live/';
+
+// /* dev */
+// const clientID = '7dd5puit2sck0l3q4qs8uu8snyegsu';
+// const redirectURI = 'http://localhost:3000';
+// 
+// /* gh pages */
+// //const clientID = 'tykygbs99dq6e8ea8ombc0obw7kk3l';
+// //const redirectURI = 'https://driplo.github.io/twitch-live/';
 
 const scope = 'user_read';
 const state = 'logged';

@@ -4,14 +4,14 @@ import './App.css';
 import Header from './component/Header';
 import Player from './component/Player';
 
-const GetURLParameters = (sParam) => {
-    const sPageURL = window.location.hash.substring(1);
+const GetURLParameters = (param) => {
+    const pageURL = window.location.hash.substring(1);
 
-    const sURLVariables = sPageURL.split('&');
-    for (let i = 0; i < sURLVariables.length; i++) {
-        const sParameterName = sURLVariables[i].split('=');
-        if (sParameterName[0] === sParam) {
-            return sParameterName[1];
+    const URLVariables = pageURL.split('&');
+    for (let i = 0; i < URLVariables.length; i++) {
+        const parameterName = URLVariables[i].split('=');
+        if (parameterName[0] === param) {
+            return parameterName[1];
         }
     }
 } 
