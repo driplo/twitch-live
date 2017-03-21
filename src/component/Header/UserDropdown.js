@@ -18,7 +18,7 @@ class UserDropdown extends Component {
   render() {
     
     return (
-      <div className="user-menu" className={this.state.active? 'user-menu user-menu--active' : 'user-menu'} onClick={this.handleClick.bind(this)}>
+      <div className="user-menu" className={this.state.active? 'user-menu user-menu--active' : 'user-menu'} onClick={() => this.handleClick() }>
         <div className="user-logged">
           <i className="material-icons">face</i>
           <span className="username">{this.props.username}</span>

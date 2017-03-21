@@ -14,7 +14,3 @@ render(
   </Provider>,
   document.getElementById('root')
 )
-
-store.subscribe(() => {
-  console.log('CURRENT STATE', store.getState());
-});
