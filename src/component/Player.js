@@ -4,6 +4,8 @@ import TwitchPlayer from './TwitchPlayer';
 import TwitchChat from './TwitchChat';
 import { connect } from 'react-redux'
 
+import '../style/Player.css';
+
 class Player extends Component {
   
   constructor(props) {
@@ -26,7 +28,7 @@ class Player extends Component {
           return response.json(); 
         }).then(({streams}) => {
           if (streams.length > 0){
-            this.props.dispatch({ type: 'SWITCH_STREAM', payload: streams[0].channel.name });
+            this.props.dispatch({ type: 'SWITCH_STREAM', payload: streams[0] });
             this.setState({
               streams: streams,
               currentStream: streams[0].channel.name,
@@ -35,10 +37,10 @@ class Player extends Component {
           } else {
             this.setState({
               streams: streams,
-              currentStream: '',
+              currentStream: false,
               loading: false
             });
-            this.props.dispatch({ type: 'SWITCH_STREAM', payload: '' });
+            this.props.dispatch({ type: 'SWITCH_STREAM', payload: false });
           }
         }).catch(function(ex) {
           console.log('parsing failed', ex)
@@ -49,7 +51,7 @@ class Player extends Component {
   render() {
 
     return(
-      <section className="Player">
+      <section className="Player" className={this.props.cinemaMode? 'Player Player--cinema' : 'Player'}>
         <div className="player-shadow"></div>
         <div className="player-background"></div>
         <div className="player-content">
@@ -59,16 +61,12 @@ class Player extends Component {
             </div>
             <StreamList streams={this.state.streams}/>
           </div>
-          <div className="EmbedStream">
-            <TwitchPlayer livestream={this.props.streamId}/>
-          </div>
-          <div className="TwitchChat SidePlayer">
-            <TwitchChat livestream={this.props.streamId}/>
-          </div>
+          <TwitchPlayer livestream={this.props.streamId} streamInfo={this.props.streamInfo}/>
+          <TwitchChat livestream={this.props.streamId}/>
         </div>
       </section>
     )
   }
 }
 
-export default connect(state => ({ streamId: state.streamId }))(Player);
+export default connect(state => ({ streamId: state.streamId, streamInfo: state.streamInfo, cinemaMode: state.cinemaMode }))(Player);

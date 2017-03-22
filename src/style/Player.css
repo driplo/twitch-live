@@ -1,0 +1,89 @@
+/******CINEMA MODE*******/
+.Player{
+  transition: all 0.25s ease-in-out;
+}
+
+  .Player.Player--cinema{
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    transform: initial;
+  }
+
+  .Player.Player--cinema .StreamList-container{
+    display: none;
+  }
+  
+  .Player.Player--cinema .EmbedStream iframe{
+    height: calc(100%);
+  }
+  
+  .Player.Player--cinema .StreamPresentation{
+    display: none;
+  }
+/******CINEMA MODE*******/
+
+
+.Player .EmbedStream iframe{
+  height: calc(100% - 80px);
+}
+
+.Player .StreamPresentation{
+  height: 80px;
+}
+
+.StreamPresentation{
+  box-sizing: border-box;
+  padding: 15px;
+  text-align: left;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: rgba(136, 106, 234, 0.3);
+  color: #222;
+}
+
+.StreamPresentation h1{
+  margin: 0;
+  margin-bottom: 5px;
+  line-height: 1.7rem;
+  color: #333;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.StreamPresentation .stream-info{
+  font-weight: bold;
+  font-size: 0.8rem;
+  display: flex;
+  width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.StreamPresentation .stream-info .stream-info_viewers{
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  color: #7454ad;
+  font-size: 1rem;
+}
+
+.StreamPresentation a{
+  color: #7454ad;
+  text-decoration: none;
+}
+
+.StreamPresentation .stream-img{
+  width: 50px;
+  height: 50px;
+  margin-right: 15px;
+}
+
+.StreamPresentation .stream-col{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: calc(100% - 70px);
+}
