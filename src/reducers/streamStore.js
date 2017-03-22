@@ -1,4 +1,4 @@
-const streamStore = (state = { streamID : '', streamInfo: {} }, action) => {
+const streamStore = (state = { streamID : '', streamInfo: {}, cinemaMode: false }, action) => {
   switch(action.type) {
     case 'SWITCH_STREAM':
       if (action.payload !== false){
@@ -6,7 +6,8 @@ const streamStore = (state = { streamID : '', streamInfo: {} }, action) => {
       } else {
         return { ...state, streamId: false, streamInfo: {} }
       }
-      
+    case 'TOGGLE_CINEMA':
+      return { ...state, cinemaMode: !state.cinemaMode }
     default:
       return state
   }

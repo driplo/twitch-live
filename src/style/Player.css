@@ -1,3 +1,29 @@
+/******CINEMA MODE*******/
+.Player{
+  transition: all 0.25s ease-in-out;
+}
+
+  .Player.Player--cinema{
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    transform: initial;
+  }
+
+  .Player.Player--cinema .StreamList-container{
+    display: none;
+  }
+  
+  .Player.Player--cinema .EmbedStream iframe{
+    height: calc(100%);
+  }
+  
+  .Player.Player--cinema .StreamPresentation{
+    display: none;
+  }
+/******CINEMA MODE*******/
+
+
 .Player .EmbedStream iframe{
   height: calc(100% - 80px);
 }

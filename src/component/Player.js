@@ -35,7 +35,6 @@ class Player extends Component {
               loading: false
             });
           } else {
-            console.log('aucun stream');
             this.setState({
               streams: streams,
               currentStream: false,
@@ -52,7 +51,7 @@ class Player extends Component {
   render() {
 
     return(
-      <section className="Player">
+      <section className="Player" className={this.props.cinemaMode? 'Player Player--cinema' : 'Player'}>
         <div className="player-shadow"></div>
         <div className="player-background"></div>
         <div className="player-content">
@@ -70,4 +69,4 @@ class Player extends Component {
   }
 }
 
-export default connect(state => ({ streamId: state.streamId, streamInfo: state.streamInfo }))(Player);
+export default connect(state => ({ streamId: state.streamId, streamInfo: state.streamInfo, cinemaMode: state.cinemaMode }))(Player);

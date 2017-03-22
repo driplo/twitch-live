@@ -3,7 +3,7 @@
 }
 
 .TwitchChat iframe{
-  height: 100%;
+  height: calc(100% - 50px);
   width: 100%;
 }
 
@@ -12,7 +12,7 @@
   z-index: 1;
   background-color: #886AEA;
   position: absolute;
-  top: 10px;
+  top: 60px;
   right: 10px;
   cursor: pointer;
   color: #fff;
@@ -38,4 +38,41 @@
   right: 0;
   left: 0;
   background-color: #efeef1;
+}
+
+.TwitchChat.TwitchChat--collapsed .toggle-cinema_text{
+  display: none;
+}
+
+.TwitchChat .toggle-cinema{
+  box-sizing: border-box;
+  height: 50px;
+  cursor: pointer;
+  text-align: center;
+  background-color: #886AEA;
+  border: 2px solid rgba(0,0,0,0.2);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: flex-start;
+  font-size: 0.9rem;
+}
+
+.TwitchChat .toggle-cinema_icon{
+  display: flex;
+  height: 100%;
+  width: 50px;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0,0,0,0.2);
+  font-size: 24px;
+}
+
+.TwitchChat .toggle-cinema_text{
+  display: flex;
+  flex: 1;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
 }

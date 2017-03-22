@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import CinemaMode from './Player/CinemaMode';
 import '../style/Chat.css';
 
 class TwitchChat extends Component {
@@ -21,6 +22,7 @@ class TwitchChat extends Component {
     if (this.props.livestream !== false && this.props.livestream !== undefined){
       return(
         <div className={this.state.visibleChat? 'TwitchChat SidePlayer' : 'TwitchChat TwitchChat--collapsed SidePlayer'}>
+          <CinemaMode />
           <div className="toggle-chat" onClick={() => this.handleOnClick()}><i className="material-icons">{this.state.visibleChat? 'fullscreen_exit' : 'fullscreen'}</i></div>
           <iframe 
             src={URL_STREAM}
