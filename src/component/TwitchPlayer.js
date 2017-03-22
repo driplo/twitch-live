@@ -3,12 +3,11 @@ import TwitchLoginBtn from './Header/TwitchLoginBtn';
 
 class TwitchPlayer extends Component {
   
-  render() {
-    
+  render() {    
     const URL_STREAM = `https://player.twitch.tv/?channel=${this.props.livestream}`;
-    
+
     switch(this.props.livestream) {
-      case '':
+      case false:
         return(
           <div className="EmbedStream">
             <div className="empty-stream">
@@ -36,6 +35,21 @@ class TwitchPlayer extends Component {
             scrolling="no"
             allowFullScreen="true">
           </iframe>
+          <div className="StreamPresentation">
+            <div className="stream-img">
+              <img width="50" src={this.props.streamInfo.channel.logo} alt={this.props.streamInfo.channel.name} />
+            </div>
+            <div className="stream-col">
+              <h1>{this.props.streamInfo.channel.status}</h1>
+              <div className="stream-info">
+                <a href="#">{this.props.streamInfo.channel.game}</a>
+                <span>&nbsp;on&nbsp;</span>
+                <a href={this.props.streamInfo.channel.url}>{this.props.streamInfo.channel.name}</a>
+                <span className="stream-info_viewers"><i className="material-icons">visibility</i>&nbsp;{this.props.streamInfo.viewers}</span>
+              </div>
+            </div>
+            
+          </div>
         </div>
       )
     }

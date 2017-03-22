@@ -2,6 +2,11 @@
   transition: all 0.15s ease-in;
 }
 
+.TwitchChat iframe{
+  height: 100%;
+  width: 100%;
+}
+
 .toggle-chat{
   transition: all 0.15s ease-in;
   z-index: 1;

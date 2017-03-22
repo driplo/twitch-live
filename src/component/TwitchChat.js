@@ -18,7 +18,7 @@ class TwitchChat extends Component {
 
   render() {
     const URL_STREAM = `https://www.twitch.tv/${this.props.livestream}/chat`;
-    if (this.props.livestream !== '' && this.props.livestream !== undefined){
+    if (this.props.livestream !== false && this.props.livestream !== undefined){
       return(
         <div className={this.state.visibleChat? 'TwitchChat SidePlayer' : 'TwitchChat TwitchChat--collapsed SidePlayer'}>
           <div className="toggle-chat" onClick={() => this.handleOnClick()}><i className="material-icons">{this.state.visibleChat? 'fullscreen_exit' : 'fullscreen'}</i></div>
