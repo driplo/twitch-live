@@ -151,6 +151,11 @@ body{
   flex-direction: column;
 }
 
+.Player .StreamList{
+  height: 100%;
+  overflow: auto;
+}
+
 .Player .EmbedStream .empty-stream{
   color: #ccc;
   display: flex;

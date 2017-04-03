@@ -3,10 +3,6 @@ import { connect } from 'react-redux'
 
 class CinemaMode extends Component {
   
-  constructor(props) {
-    super(props);
-  }
-  
   handleOnClick() {
     this.props.dispatch({ type: 'TOGGLE_CINEMA' });
   }

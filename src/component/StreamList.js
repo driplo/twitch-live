@@ -5,9 +5,9 @@ const StreamEntry = ({onClick, stream, active, index}) => (
   <div onClick={() => onClick(index)} className={active? 'stream-entry stream-entry--active' : 'stream-entry'} title={stream.channel.status}>
     <div className="stream-img">
       <img src={stream.channel.logo} width="30" alt="stream-game" />
-    </div>  
+    </div>
     <div className="stream-column">
-      <div className="streamer-name">{stream.channel.display_name}<span className="streamer-game">{stream.channel.game}</span></div>
+      <div className="streamer-name">{stream.viewers} - {stream.channel.display_name}<span className="streamer-game">{stream.channel.game}</span></div>
       <div className="streamer-title">{stream.channel.status}</div>
     </div>
   </div>
@@ -28,30 +28,46 @@ class StreamList extends Component {
   }
   
   render() {
-    if (this.props.streams){
-      return(
-        <div className="StreamList">
-          {this.props.streams.map((stream, i) =>
-            <StreamEntry 
-              stream={stream} 
-              active={this.state.activeIndex === i}
-              onClick={this.handleItemClick}
-              index={i}
-              key={stream.channel._id} />
-           )}
-        </div>
-      )
-    } else {
-      return(
-        <div>
-          <ul>
-            <li>Loading...</li>
-          </ul>
-        </div>
-      )
-    }
+    console.log('STREAMS PROPS STREAMLIST FROM REDUX', this.props.streamList);
+    return(
+      <div className="StreamList">
+        {this.props.streamList.map((stream, i) =>
+          <StreamEntry 
+            stream={stream} 
+            active={this.state.activeIndex === i}
+            onClick={this.handleItemClick}
+            index={i}
+            key={stream.channel._id} />
+         )}
+      </div>
+    )
+    // console.log('STREAMS PROPS STREAMLIST', this.props.streams);
+    // console.log('STREAMS PROPS STREAMLIST FROM REDUX', this.props.streamList);
+    // console.log(this.props.streamList.length);
+    // if (this.props.streamList > 0){
+    //   return(
+    //     <div className="StreamList">
+    //       {this.props.streamList.map((stream, i) =>
+    //         <StreamEntry 
+    //           stream={stream} 
+    //           active={this.state.activeIndex === i}
+    //           onClick={this.handleItemClick}
+    //           index={i}
+    //           key={stream.channel._id} />
+    //        )}
+    //     </div>
+    //   )
+    // } else {
+    //   return(
+    //     <div>
+    //       <ul>
+    //         <li>Loading...</li>
+    //       </ul>
+    //     </div>
+    //   )
+    // }
   }
     
 }
 
-export default connect()(StreamList);
+export default connect(state => ({streamList: state.streamList}))(StreamList);
