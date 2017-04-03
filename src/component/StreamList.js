@@ -41,31 +41,6 @@ class StreamList extends Component {
          )}
       </div>
     )
-    // console.log('STREAMS PROPS STREAMLIST', this.props.streams);
-    // console.log('STREAMS PROPS STREAMLIST FROM REDUX', this.props.streamList);
-    // console.log(this.props.streamList.length);
-    // if (this.props.streamList > 0){
-    //   return(
-    //     <div className="StreamList">
-    //       {this.props.streamList.map((stream, i) =>
-    //         <StreamEntry 
-    //           stream={stream} 
-    //           active={this.state.activeIndex === i}
-    //           onClick={this.handleItemClick}
-    //           index={i}
-    //           key={stream.channel._id} />
-    //        )}
-    //     </div>
-    //   )
-    // } else {
-    //   return(
-    //     <div>
-    //       <ul>
-    //         <li>Loading...</li>
-    //       </ul>
-    //     </div>
-    //   )
-    // }
   }
     
 }

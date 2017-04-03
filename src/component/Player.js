@@ -17,13 +17,13 @@ class Player extends Component {
   }
   
   componentWillMount(){  
-    
-    const thisProps = this.props
-    setInterval(function(){
-      updatePlayer(thisProps, thisProps.token);
-    }, 10000)
-    
     if (this.props.token !== ''){
+      
+      const thisProps = this.props
+      setInterval(function(){
+        refreshPlayer(thisProps, thisProps.token);
+      }, 30000)
+      
       const AUTH_TOKEN = this.props.token;
       
       const followedStreams = `https://api.twitch.tv/kraken/streams/followed?oauth_token=${AUTH_TOKEN}`;
@@ -33,14 +33,10 @@ class Player extends Component {
           return response.json(); 
         }).then(({streams}) => {
           if (streams.length > 0){
-            this.props.dispatch({ type: 'RECEIVE_STREAMS', payload: streams })
+            this.props.dispatch({ type: 'UPDATE_PLAYER', payload: streams })
             this.props.dispatch({ type: 'SWITCH_STREAM', payload: streams[0] })
           } else {
-            this.setState({
-              streams: streams,
-              currentStream: false,
-              loading: false
-            });
+            this.props.dispatch({ type: 'UPDATE_PLAYER', payload: [] })
             this.props.dispatch({ type: 'SWITCH_STREAM', payload: false });
           }
         }).catch(function(ex) {
@@ -70,23 +66,22 @@ class Player extends Component {
 }
 
 const receiveErrorStreams = payload => ({
-  type: 'STREAMS_ERROR',
+  type: 'UPDATE_ERROR',
   payload,
 })
 
-const receiveStreams = payload => ({
-  type: 'RECEIVE_STREAMS',
+const updatePlayer = payload => ({
+  type: 'UPDATE_PLAYER',
   payload,
 })
 
-const updatePlayer = (props, authToken) => {
-  console.log('trying to update');
+const refreshPlayer = (props, authToken) => {
   const followedStreams = `https://api.twitch.tv/kraken/streams/followed?oauth_token=${authToken}`;
   fetch(followedStreams)
     .then( response => { 
       return response.json(); 
     }).then(({streams}) => {
-      props.dispatch(receiveStreams(streams))
+      props.dispatch(updatePlayer(streams))
     }).catch(error => props.dispatch(receiveErrorStreams(error)))
 }
 
