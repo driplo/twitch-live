@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 
+import { toggleCinema } from '../../actions/playerActions';
+
 class CinemaMode extends Component {
   
   handleOnClick() {
-    this.props.dispatch({ type: 'TOGGLE_CINEMA' });
+    toggleCinema(this.props)
   }
 
   render() {

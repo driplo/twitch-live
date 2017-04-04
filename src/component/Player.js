@@ -1,29 +1,23 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux'
+
 import StreamList from './StreamList';
 import TwitchPlayer from './TwitchPlayer';
 import TwitchChat from './TwitchChat';
-import { connect } from 'react-redux'
 
+
+import { refreshPlayer } from '../actions/playerActions';
 import '../style/Player.css';
 
 class Player extends Component {
   
   constructor(props) {
     super(props)
-    this.state = {
-      streams: [],
-      currentStream: ''
-    }
   }
   
   componentWillMount(){  
+    
     if (this.props.token !== ''){
-      
-      const thisProps = this.props
-      setInterval(function(){
-        refreshPlayer(thisProps, thisProps.token);
-      }, 30000)
-      
       const AUTH_TOKEN = this.props.token;
       
       const followedStreams = `https://api.twitch.tv/kraken/streams/followed?oauth_token=${AUTH_TOKEN}`;
@@ -42,8 +36,13 @@ class Player extends Component {
         }).catch(function(ex) {
           console.log('parsing failed', ex)
         });
+        
+        setInterval(function(props){
+          refreshPlayer(props);
+        }, 10000, this.props);
+
     }
-  }  
+  }
 
   render() {
     return(
@@ -53,38 +52,16 @@ class Player extends Component {
         <div className="player-content">
           <div className="StreamList-container SidePlayer">
             <div className="StreamList-header">
-              Followed Channels
+              Following Channels
             </div>
             <StreamList streams={this.props.streamList}/>
           </div>
-          <TwitchPlayer livestream={this.props.streamId} streamInfo={this.props.streamInfo}/>
-          <TwitchChat livestream={this.props.streamId}/>
+          <TwitchPlayer />
+          <TwitchChat channel={this.props.currentStream.channel.name}/>
         </div>
       </section>
     )
   }
 }
 
-const receiveErrorStreams = payload => ({
-  type: 'UPDATE_ERROR',
-  payload,
-})
-
-const updatePlayer = payload => ({
-  type: 'UPDATE_PLAYER',
-  payload,
-})
-
-const refreshPlayer = (props, authToken) => {
-  const followedStreams = `https://api.twitch.tv/kraken/streams/followed?oauth_token=${authToken}`;
-  fetch(followedStreams)
-    .then( response => { 
-      return response.json(); 
-    }).then(({streams}) => {
-      props.dispatch(updatePlayer(streams))
-    }).catch(error => props.dispatch(receiveErrorStreams(error)))
-}
-
-
-
-export default connect(state => ({ streamId: state.streamId, streamInfo: state.streamInfo, cinemaMode: state.cinemaMode, streamList: state.streamList }))(Player);
+export default connect(state => ({ streamList: state.streamList, currentStream: state.currentStream, cinemaMode: state.cinemaMode }))(Player);

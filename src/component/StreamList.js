@@ -7,8 +7,9 @@ const StreamEntry = ({onClick, stream, active, index}) => (
       <img src={stream.channel.logo} width="30" alt="stream-game" />
     </div>
     <div className="stream-column">
-      <div className="streamer-name">{stream.viewers} - {stream.channel.display_name}<span className="streamer-game">{stream.channel.game}</span></div>
+      <div className="streamer-name">{stream.channel.display_name}<span className="streamer-game">{stream.channel.game}</span></div>
       <div className="streamer-title">{stream.channel.status}</div>
+      <div className="streamer-viewers"><i className="material-icons">visibility</i>&nbsp;{stream.viewers}</div>
     </div>
   </div>
 )
@@ -28,7 +29,6 @@ class StreamList extends Component {
   }
   
   render() {
-    console.log('STREAMS PROPS STREAMLIST FROM REDUX', this.props.streamList);
     return(
       <div className="StreamList">
         {this.props.streamList.map((stream, i) =>

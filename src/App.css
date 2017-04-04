@@ -231,6 +231,18 @@ body{
     font-size: 11px;
   }
   
+  .streamer-viewers{
+    font-size: 0.8rem;
+    color: #886AEA;
+    display: flex;
+    align-items: center;
+  }
+  
+  .streamer-viewers i{
+    font-size: 0.8rem;
+    color: #886AEA;
+  }
+  
   
   .streamer-title{
     color: #666;

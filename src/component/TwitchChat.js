@@ -18,8 +18,8 @@ class TwitchChat extends Component {
   }
 
   render() {
-    const URL_STREAM = `https://www.twitch.tv/${this.props.livestream}/chat`;
-    if (this.props.livestream !== false && this.props.livestream !== undefined){
+    const URL_STREAM = `https://www.twitch.tv/${this.props.channel}/chat`;
+    if (this.props.channel !== false && this.props.channel !== undefined){
       return(
         <div className={this.state.visibleChat? 'TwitchChat SidePlayer' : 'TwitchChat TwitchChat--collapsed SidePlayer'}>
           <CinemaMode />
