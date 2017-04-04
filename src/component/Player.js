@@ -15,9 +15,11 @@ class Player extends Component {
     super(props)
   }
   
-  componentWillMount(){  
-    
+  componentWillMount(){
+
     if (this.props.token !== ''){
+      this.props.dispatch({ type: 'CONNECT', payload: true })
+      
       const AUTH_TOKEN = this.props.token;
       
       const followedStreams = `https://api.twitch.tv/kraken/streams/followed?oauth_token=${AUTH_TOKEN}`;
@@ -41,6 +43,8 @@ class Player extends Component {
           refreshPlayer(props);
         }, 10000, this.props);
 
+    } else {
+      this.props.dispatch({ type: 'CONNECT', payload: false })
     }
   }
 
