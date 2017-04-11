@@ -1,24 +1,22 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux'
+
 import StreamList from './StreamList';
 import TwitchPlayer from './TwitchPlayer';
 import TwitchChat from './TwitchChat';
-import { connect } from 'react-redux'
 
+
+import { refreshPlayer } from '../actions/playerActions';
 import '../style/Player.css';
 
 class Player extends Component {
   
-  constructor(props) {
-    super(props)
-    this.state = {
-      streams: [],
-      currentStream: ''
-    }
-  }
-  
-  componentWillMount(){  
-        
+  componentWillMount(){
+
     if (this.props.token !== ''){
+
+      this.props.dispatch({ type: 'CONNECT', payload: { online: true, token: this.props.token } })
+      
       const AUTH_TOKEN = this.props.token;
       
       const followedStreams = `https://api.twitch.tv/kraken/streams/followed?oauth_token=${AUTH_TOKEN}`;
@@ -28,30 +26,35 @@ class Player extends Component {
           return response.json(); 
         }).then(({streams}) => {
           if (streams.length > 0){
-            this.props.dispatch({ type: 'SWITCH_STREAM', payload: streams[0] });
-            this.setState({
-              streams: streams,
-              currentStream: streams[0].channel.name,
-              loading: false
-            });
+            this.props.dispatch({ type: 'UPDATE_PLAYER', payload: streams })
+            this.props.dispatch({ type: 'SWITCH_STREAM', payload: streams[0] })
           } else {
-            this.setState({
-              streams: streams,
-              currentStream: false,
-              loading: false
-            });
+            this.props.dispatch({ type: 'UPDATE_PLAYER', payload: [] })
             this.props.dispatch({ type: 'SWITCH_STREAM', payload: false });
           }
         }).catch(function(ex) {
           console.log('parsing failed', ex)
         });
+        
+        
+
+    } else {
+      this.props.dispatch({ type: 'CONNECT', payload: { online: false, token: '' } })
     }
-  }  
+  }
+  
+  componentWillReceiveProps(nextProps){
+    
+    setTimeout(function(props){
+      const currentStreamer = props.currentStream.channel.name
+      refreshPlayer(props, currentStreamer);
+    }, 30000, this.props);
+    
+  }
 
   render() {
-
     return(
-      <section className="Player" className={this.props.cinemaMode? 'Player Player--cinema' : 'Player'}>
+      <section className={this.props.cinemaMode? 'Player Player--cinema' : 'Player'}>
         <div className="player-shadow"></div>
         <div className="player-background"></div>
         <div className="player-content">
@@ -59,14 +62,14 @@ class Player extends Component {
             <div className="StreamList-header">
               Following Channels
             </div>
-            <StreamList streams={this.state.streams}/>
+            <StreamList streams={this.props.streamList}/>
           </div>
-          <TwitchPlayer livestream={this.props.streamId} streamInfo={this.props.streamInfo}/>
-          <TwitchChat livestream={this.props.streamId}/>
+          <TwitchPlayer />
+          <TwitchChat />
         </div>
       </section>
     )
   }
 }
 
-export default connect(state => ({ streamId: state.streamId, streamInfo: state.streamInfo, cinemaMode: state.cinemaMode }))(Player);
+export default connect(state => ({ streamList: state.streamList, cinemaMode: state.cinemaMode, currentStream: state.currentStream }))(Player);

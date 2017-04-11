@@ -151,6 +151,11 @@ body{
   flex-direction: column;
 }
 
+.Player .StreamList{
+  height: 100%;
+  overflow: auto;
+}
+
 .Player .EmbedStream .empty-stream{
   color: #ccc;
   display: flex;
@@ -224,6 +229,18 @@ body{
     color: #886AEA;
     font-weight: normal;
     font-size: 11px;
+  }
+  
+  .streamer-viewers{
+    font-size: 0.8rem;
+    color: #886AEA;
+    display: flex;
+    align-items: center;
+  }
+  
+  .streamer-viewers i{
+    font-size: 0.8rem;
+    color: #886AEA;
   }
   
   
