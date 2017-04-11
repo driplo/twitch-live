@@ -11,14 +11,11 @@ import '../style/Player.css';
 
 class Player extends Component {
   
-  constructor(props) {
-    super(props)
-  }
-  
   componentWillMount(){
 
     if (this.props.token !== ''){
-      this.props.dispatch({ type: 'CONNECT', payload: true })
+
+      this.props.dispatch({ type: 'CONNECT', payload: { online: true, token: this.props.token } })
       
       const AUTH_TOKEN = this.props.token;
       
@@ -39,18 +36,25 @@ class Player extends Component {
           console.log('parsing failed', ex)
         });
         
-        setInterval(function(props){
-          refreshPlayer(props);
-        }, 10000, this.props);
+        
 
     } else {
-      this.props.dispatch({ type: 'CONNECT', payload: false })
+      this.props.dispatch({ type: 'CONNECT', payload: { online: false, token: '' } })
     }
+  }
+  
+  componentWillReceiveProps(nextProps){
+    
+    setTimeout(function(props){
+      const currentStreamer = props.currentStream.channel.name
+      refreshPlayer(props, currentStreamer);
+    }, 30000, this.props);
+    
   }
 
   render() {
     return(
-      <section className="Player" className={this.props.cinemaMode? 'Player Player--cinema' : 'Player'}>
+      <section className={this.props.cinemaMode? 'Player Player--cinema' : 'Player'}>
         <div className="player-shadow"></div>
         <div className="player-background"></div>
         <div className="player-content">
@@ -61,11 +65,11 @@ class Player extends Component {
             <StreamList streams={this.props.streamList}/>
           </div>
           <TwitchPlayer />
-          <TwitchChat channel={this.props.currentStream.channel.name}/>
+          <TwitchChat />
         </div>
       </section>
     )
   }
 }
 
-export default connect(state => ({ streamList: state.streamList, currentStream: state.currentStream, cinemaMode: state.cinemaMode }))(Player);
+export default connect(state => ({ streamList: state.streamList, cinemaMode: state.cinemaMode, currentStream: state.currentStream }))(Player);

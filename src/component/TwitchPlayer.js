@@ -6,9 +6,9 @@ import TwitchLoginBtn from './Header/TwitchLoginBtn';
 class TwitchPlayer extends Component {
   
   render() {
-    const URL_STREAM = `https://player.twitch.tv/?channel=${this.props.currentStream.channel.name}`;
     
-    if (this.props.online){
+    const URL_STREAM = `https://player.twitch.tv/?channel=${this.props.currentStream.channel.name}`;
+    if (this.props.connected.online){
       if (this.props.currentStream.channel.name !== ''){
         return(
           <div className="EmbedStream">
@@ -60,4 +60,4 @@ class TwitchPlayer extends Component {
     
   }
 }
-export default connect(state => ({ currentStream: state.currentStream, online : state.online }))(TwitchPlayer);
+export default connect(state => ({ currentStream: state.currentStream, connected : state.connected }))(TwitchPlayer);

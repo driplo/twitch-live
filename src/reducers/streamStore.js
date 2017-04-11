@@ -1,5 +1,8 @@
 const defaultState = {
-  online: false,
+  connected : {
+    online: false,
+    token: '',
+  },
   streamList : [],
   currentStream : {
     channel : {
@@ -12,12 +15,12 @@ const defaultState = {
 const playerStore = (state = defaultState, action) => {
   switch(action.type) {
     case 'CONNECT':
-      return { ...state, online: action.payload }
+      return { ...state, connected:{ online: action.payload.online, token: action.payload.token }  }
     case 'SWITCH_STREAM':
       if (action.payload !== false){
         return {...state, currentStream: action.payload };
       } else {
-        return { ...state, currentStream: {}}
+        return { ...state}
       }
     case 'TOGGLE_CINEMA':
       return { ...state, cinemaMode: !state.cinemaMode }
