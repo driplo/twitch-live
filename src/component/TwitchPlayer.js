@@ -30,7 +30,6 @@ class TwitchPlayer extends Component {
                   <a href={this.props.currentStream.channel.url}>{this.props.currentStream.channel.name}</a>
                 </div>
               </div>
-              
             </div>
           </div>
         )
