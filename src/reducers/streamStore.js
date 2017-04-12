@@ -2,6 +2,7 @@ const defaultState = {
   connected : {
     online: false,
     token: '',
+    remember: false
   },
   streamList : [],
   currentStream : {
@@ -15,8 +16,9 @@ const defaultState = {
 const playerStore = (state = defaultState, action) => {
   switch(action.type) {
     case 'CONNECT':
-      return { ...state, connected:{ online: action.payload.online, token: action.payload.token }  }
+      return { ...state, connected:{ online: action.payload.online, token: action.payload.token, remember: action.payload.remember }  }
     case 'SWITCH_STREAM':
+      console.log('SWITCH STREAM', action.payload);
       if (action.payload !== false){
         return {...state, currentStream: action.payload };
       } else {

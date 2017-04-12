@@ -1,0 +1,31 @@
+.login-form{
+  display: flex;
+  border: 1px solid #ddd;
+  padding: 40px 60px;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 2px;
+  background: #efeef1;
+}
+
+.login-form img{
+  margin-bottom: 40px;
+}
+
+.login-form p{
+  color: #aaa;
+  font-size: 10px;
+  margin: 0;
+}
+
+.login-btn{
+  border: 0;
+  padding: 15px 25px;
+  border-radius: 2px;
+  background-color: #886AEA;
+  color: #fff;
+  cursor: pointer;
+  margin-bottom: 20px;
+  font-size: 14px;
+  text-decoration: none;
+}

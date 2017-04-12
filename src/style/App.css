@@ -105,10 +105,22 @@ body{
   height: 70vh;
   position: relative;
   background-color: #efeef1;
+  transform: translateY(-125px);
   align-self: center;
   display: flex;
-  transform: translateY(-125px);
   border-radius: 2px;
+  animation: playerSlideIn 0.25s;
+}
+
+@keyframes playerSlideIn {
+  0% {
+    transform: translateY(-100px) scale3d(1.2,1.2,1);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(-125px) scale3d(1,1,1);
+    opacity: 1;
+  }
 }
 
 .Player .player-shadow{
@@ -117,7 +129,7 @@ body{
   left: 5%;
   width: 90%;
   height: 95%;
-  box-shadow: 0 4px 14px 0 rgba(98,94,226,.2), 0 0 70px 20px rgba(98,94,226,.2);
+  box-shadow: 0 4px 14px 0 rgba(0,0,0,.2), 0 0 70px 20px rgba(0,0,0,.2);
 }
 
 .Player .player-content{

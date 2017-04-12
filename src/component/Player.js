@@ -11,6 +11,10 @@ import '../style/Player.css';
 
 class Player extends Component {
   
+  state = {
+    testaroo : 0
+  }
+
   componentWillMount(){
 
     if (this.props.token !== ''){
@@ -43,16 +47,20 @@ class Player extends Component {
     }
   }
   
-  componentWillReceiveProps(nextProps){
-    
-    setTimeout(function(props){
-      const currentStreamer = props.currentStream.channel.name
+  componentDidMount(){
+    this.interval = setInterval(function(props){
+      const currentStreamer = props.currentStream.channel.name;
       refreshPlayer(props, currentStreamer);
-    }, 30000, this.props);
-    
+    }, 5000, this.props)
+  }
+  
+  componentWillUnMount(){
+    console.log('UNMOUNT');
+    clearInterval(this.interval);
   }
 
   render() {
+    console.log(this.props.currentStream);
     return(
       <section className={this.props.cinemaMode? 'Player Player--cinema' : 'Player'}>
         <div className="player-shadow"></div>
@@ -60,7 +68,7 @@ class Player extends Component {
         <div className="player-content">
           <div className="StreamList-container SidePlayer">
             <div className="StreamList-header">
-              Following Channels
+              Followed Channels {this.state.testaroo}
             </div>
             <StreamList streams={this.props.streamList}/>
           </div>

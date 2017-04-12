@@ -75,4 +75,7 @@
   height: 100%;
   align-items: center;
   justify-content: center;
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: bold;
 }
