@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import './App.css';
+import { connect } from 'react-redux';
+
+import './style/App.css';
 import './style/Responsive.css';
 
 import Header from './component/Header';
@@ -27,7 +29,7 @@ class App extends Component {
   }
   
   componentWillMount(){
-    
+        
     if (GetURLParameters('state') === 'logged'){
       const AUTH_TOKEN = GetURLParameters('access_token')
             
@@ -51,9 +53,8 @@ class App extends Component {
           console.log('parsing failed', ex)
         });
     } 
-    
   }
-  
+
   render() {
     return (
       <div className="App">
@@ -64,4 +65,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default connect(state => ({ connected : state.connected.online }))(App);

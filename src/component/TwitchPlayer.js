@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 
-import TwitchLoginBtn from './Header/TwitchLoginBtn';
+import LoginButton from './Login/LoginButton';
 
 class TwitchPlayer extends Component {
   
@@ -28,10 +28,8 @@ class TwitchPlayer extends Component {
                   <a href="#">{this.props.currentStream.channel.game}</a>
                   <span>&nbsp;on&nbsp;</span>
                   <a href={this.props.currentStream.channel.url}>{this.props.currentStream.channel.name}</a>
-                  <span className="stream-info_viewers"><i className="material-icons">visibility</i>&nbsp;{this.props.currentStream.viewers}</span>
                 </div>
               </div>
-              
             </div>
           </div>
         )
@@ -50,9 +48,7 @@ class TwitchPlayer extends Component {
       return(
         <div className="EmbedStream">
           <div className="empty-stream">
-            <img src="https://web-cdn.ttvnw.net/images/xarth/dead_glitch.png" alt="Offline" />
-            <p>Please log in.</p>
-            <TwitchLoginBtn />
+            <LoginButton />
           </div>
         </div>
       )

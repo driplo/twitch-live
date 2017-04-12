@@ -4,7 +4,7 @@ import { Provider } from 'react-redux'
 import { createStore } from 'redux'
 import playerStore from './reducers/streamStore'
 import App from './App';
-import './index.css';
+import './style/index.css';
 
 let store = createStore(playerStore);
 

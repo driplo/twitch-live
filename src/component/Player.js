@@ -43,13 +43,17 @@ class Player extends Component {
     }
   }
   
-  componentWillReceiveProps(nextProps){
-    
-    setTimeout(function(props){
-      const currentStreamer = props.currentStream.channel.name
-      refreshPlayer(props, currentStreamer);
-    }, 30000, this.props);
-    
+  componentDidMount(){
+    if (this.props.token !== ''){
+      this.interval = setInterval(function(props){
+        const currentStreamer = props.currentStream.channel.name;
+        refreshPlayer(props, currentStreamer);
+      }, 5000, this.props)
+    }
+  }
+  
+  componentWillUnMount(){
+    clearInterval(this.interval);
   }
 
   render() {
@@ -60,7 +64,7 @@ class Player extends Component {
         <div className="player-content">
           <div className="StreamList-container SidePlayer">
             <div className="StreamList-header">
-              Following Channels
+              Followed Channels
             </div>
             <StreamList streams={this.props.streamList}/>
           </div>
