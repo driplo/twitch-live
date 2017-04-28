@@ -1,0 +1,26 @@
+.search-box{
+  position: absolute;
+  right: 50px;
+  width: 0;
+  opacity: 0;
+  background-color: #ccc;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  transition: all 0.15s ease-in-out;
+}
+
+.search-box--active{
+  width: calc(100% - 50px);
+  opacity: 1;
+}
+
+.search-box__input{
+  height: 100%;
+  width: 100%;
+  padding: 0px 15px;
+  border: 0;
+}
+

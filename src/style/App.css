@@ -1,5 +1,5 @@
 body{
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 .hide{
@@ -285,7 +285,7 @@ iframe{
   color: #886AEA;
   font-size: 0.8rem;
   text-align: left;
-  padding: 10px 0;
+  padding: 4px 0;
   border-radius: 2px;
   border: 1px solid #ccc;
   transition: all 0.15s ease-in-out;

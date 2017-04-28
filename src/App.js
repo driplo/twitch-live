@@ -6,6 +6,7 @@ import './style/Responsive.css';
 
 import Header from './component/Header';
 import Player from './component/Player';
+import SearchDiv from './component/Search/SearchDiv';
 
 const GetURLParameters = (param) => {
     const pageURL = window.location.hash.substring(1);
@@ -60,6 +61,7 @@ class App extends Component {
       <div className="App">
         <Header username={this.state.username}/>
         <Player token={this.state.userToken} />
+        <SearchDiv />
       </div>
     );
   }
