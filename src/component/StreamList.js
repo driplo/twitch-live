@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 
 const StreamEntry = ({onClick, stream, active, index}) => (
   <div onClick={() => onClick(index)} className={active? 'stream-entry stream-entry--active' : 'stream-entry'} title={stream.channel.status}>
+    
     <div className="stream-img">
       <img src={stream.channel.logo} width="30" alt="stream-game" />
     </div>
@@ -29,12 +30,16 @@ class StreamList extends Component {
   }
   
   render() {
+    
+    const streamList = this.props.streamList;
+    const streamNow = this.props.currentStream;
+    
     return(
       <div className="StreamList">
-        {this.props.streamList.map((stream, i) =>
+        {this.props.streamList.map((stream, i) => 
           <StreamEntry 
             stream={stream} 
-            active={this.state.activeIndex === i}
+            active={stream._id === streamNow._id ? true : false}
             onClick={this.handleItemClick}
             index={i}
             key={stream.channel._id} />
@@ -45,4 +50,4 @@ class StreamList extends Component {
     
 }
 
-export default connect(state => ({streamList: state.streamList}))(StreamList);
+export default connect(state => ({streamList: state.streamList, currentStream: state.currentStream}))(StreamList);
