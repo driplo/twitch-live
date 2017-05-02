@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import StreamList from './StreamList';
 import TwitchPlayer from './TwitchPlayer';
 import TwitchChat from './TwitchChat';
+import SearchBox from './Search/SearchBox';
 
 import { refreshPlayer } from '../actions/playerActions';
 import '../style/Player.css';
@@ -65,11 +66,7 @@ class Player extends Component {
           <div className="StreamList-container SidePlayer">
             <div className="side-header">  
               <div className="side-header_text">Followed Channels</div>
-              <div className="side-header_icon"><i className="material-icons">add_to_queue</i></div>
-              
-              <div className="search-box">
-                <input type="text" className="search-box__input" placeholder="Search a live stream..." />
-              </div>
+              <SearchBox />
             </div>
             <StreamList streams={this.props.streamList}/>
           </div>

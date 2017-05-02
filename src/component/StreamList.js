@@ -31,7 +31,6 @@ class StreamList extends Component {
   
   render() {
     
-    const streamList = this.props.streamList;
     const streamNow = this.props.currentStream;
     
     return(

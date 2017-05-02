@@ -26,7 +26,10 @@ export const refreshPlayer = (props, currentStreamer) => {
     }).catch(error => props.dispatch(receiveErrorStreams(error)))
 }
 
-
 export const toggleCinema = (props) => {
   props.dispatch({ type: 'TOGGLE_CINEMA' });
+}
+
+export const toggleSearchBox = (props) => {
+  props.dispatch({ type: 'TOGGLE_SEARCHBOX' });
 }
