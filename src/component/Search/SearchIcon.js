@@ -18,7 +18,9 @@ class SearchIcon extends Component {
   render() {
 
     return(
-      <div className="side-header_icon" onClick={this.handleClick}><i className="material-icons">add_to_queue</i></div>
+      <div className="side-header_icon" onClick={this.handleClick}>
+        <i className="material-icons">add_to_queue</i>
+      </div>
     )
 
   }

@@ -67,3 +67,143 @@
   margin-left: auto;
   color: #886AEA;
 }
+
+
+
+/******************* SEARCHBOX ********************/
+.SearchBox{
+  content: '';
+  top:0;
+  bottom:0;
+  left:0;
+  right:0;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(255,255,255,0.75);
+  animation: FadeIn ease-in-out 0.25s;
+}
+
+@keyframes SearchBoxIn {
+  0% {
+    transform: scale3d(1.2,1.2,1);
+    opacity: 0;
+  }
+  100% {
+    transform: scale3d(1,1,1);
+    opacity: 1;
+  }
+}
+
+@keyframes FadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+
+
+.SearchBox__list{
+  height: 320px;
+  overflow-y: auto;
+}
+
+.SearchBox__content{
+  position: relative;
+  display: flex;
+  width: 450px;
+  background-color: #fff;
+  border-radius: 2px;
+  box-sizing: border-box;
+  box-shadow: 0px 3px 10px 0px rgba(0,0,0,0.35);
+  display: flex;
+  flex-direction: column;
+  font-family: 'Roboto', sans-serif;
+  animation: SearchBoxIn ease-in-out 0.25s;
+}
+
+.SearchBox__loading{
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.SearchBox__header{
+  padding: 15px;
+  background-color: #886AEA;
+  color: #fff;
+}
+
+.SearchBox__close{
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 12px;
+  line-height: 10px;
+  font-size: 22px;
+  cursor: pointer;
+  color: #fff;
+}
+
+.SearchBox__dropdown{
+  border-bottom: 1px solid #ccc;
+  position: relative;
+  display: flex;
+  padding: 5px;
+}
+
+.SearchBox__dropdown select, .SearchBox__search input{
+  font-family: 'Roboto', sans-serif;
+  width: 100%;
+  border-right: 0;
+  border-left: 0;
+  padding: 15px 10px;
+  cursor: pointer;
+  box-sizing: border-box;
+  border: 0;
+}
+
+.SearchBox__dropdown select{
+  width: calc(100% - 40px);
+  margin-left: auto;
+}
+
+.SearchBox__dropdown .game-icon{
+  width: 40px;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.SearchBox__search input{
+  cursor: default;
+}
+
+.SearchBox__search{
+  position: relative;
+  height: 50px;
+}
+
+.SearchBox__search input{
+  height: 100%;
+}
+
+.SearchBox__search i{
+  position: absolute;
+  right: 0;
+  padding: 15px 10px;
+  font-size: 18px;
+  color: #886AEA;
+}
+
+.SearchBox__entry .stream-entry{
+  padding: 5px 10px;
+  
+}
