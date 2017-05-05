@@ -6,7 +6,7 @@ import './style/Responsive.css';
 
 import Header from './component/Header';
 import Player from './component/Player';
-import SearchBoxTest from './component/Search/SearchBoxTest';
+import SearchBox from './component/Search/SearchBox';
 
 
 const GetURLParameters = (param) => {
@@ -62,7 +62,7 @@ class App extends Component {
       <div className="App">
         <Header username={this.state.username}/>
         <Player token={this.state.userToken} />
-        <SearchBoxTest />
+        <SearchBox />
       </div>
     );
   }

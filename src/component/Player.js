@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import StreamList from './StreamList';
 import TwitchPlayer from './TwitchPlayer';
 import TwitchChat from './TwitchChat';
-import SearchBox from './Search/SearchBox';
+import SearchBoxButton from './Search/SearchBoxButton';
 
 import { refreshPlayer } from '../actions/playerActions';
 import '../style/Player.css';
@@ -66,7 +66,7 @@ class Player extends Component {
           <div className="StreamList-container SidePlayer">
             <div className="side-header">  
               <div className="side-header_text">Followed Channels</div>
-              <SearchBox />
+              <SearchBoxButton />
             </div>
             <StreamList streams={this.props.streamList}/>
           </div>
