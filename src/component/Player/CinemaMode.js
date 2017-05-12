@@ -11,9 +11,9 @@ class CinemaMode extends Component {
 
   render() {
     return(
-      <div className="toggle-cinema" onClick={() => this.handleOnClick()}>
-        <div className="toggle-cinema_icon"><i className="material-icons">view_compact</i> </div>
-        <div className="toggle-cinema_text">Toggle Cinema Mode</div>
+      <div className="side-header" onClick={() => this.handleOnClick()}>
+        <div className="side-header_icon"><i className="material-icons">view_compact</i> </div>
+        <div className="side-header_text">Toggle Cinema Mode</div>
       </div>
     )
   }

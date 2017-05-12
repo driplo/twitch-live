@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
+import StreamEntry from './StreamEntry';
+
+/*
 const StreamEntry = ({onClick, stream, active, index}) => (
   <div onClick={() => onClick(index)} className={active? 'stream-entry stream-entry--active' : 'stream-entry'} title={stream.channel.status}>
     
@@ -14,6 +17,7 @@ const StreamEntry = ({onClick, stream, active, index}) => (
     </div>
   </div>
 )
+*/
 
 class StreamList extends Component {
   
@@ -31,7 +35,6 @@ class StreamList extends Component {
   
   render() {
     
-    const streamList = this.props.streamList;
     const streamNow = this.props.currentStream;
     
     return(

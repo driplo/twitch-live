@@ -10,7 +10,8 @@ const defaultState = {
       name : ''
     }
   },
-  cinemaMode: false
+  cinemaMode: false,
+  searchBoxActive: false
 }
 
 const playerStore = (state = defaultState, action) => {
@@ -25,6 +26,8 @@ const playerStore = (state = defaultState, action) => {
       }
     case 'TOGGLE_CINEMA':
       return { ...state, cinemaMode: !state.cinemaMode }
+    case 'TOGGLE_SEARCHBOX':
+      return { ...state, searchBoxActive: !state.searchBoxActive }
     case 'UPDATE_ERROR':
       return { ...state, error: action.payload }
     case 'UPDATE_PLAYER':
@@ -33,7 +36,5 @@ const playerStore = (state = defaultState, action) => {
       return state
   }
 }
-
-
 
 export default playerStore
