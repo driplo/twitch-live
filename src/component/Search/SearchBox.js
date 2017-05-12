@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import { toggleSearchBox } from '../../actions/playerActions';
-
+import StreamEntry from '../StreamEntry';
 import loading from '../../images/loading.svg';
 
 class SearchBox extends Component {
@@ -21,7 +21,7 @@ class SearchBox extends Component {
   
   componentWillMount(){
     const AUTH_TOKEN = this.props.connected.token;
-    const gameListLink = `https://api.twitch.tv/kraken/games/top?oauth_token=${AUTH_TOKEN}&limit=15`;
+    const gameListLink = `https://api.twitch.tv/kraken/games/top?oauth_token=${AUTH_TOKEN}&limit=25`;
     this.setState({
       loading : true
     });
@@ -36,7 +36,7 @@ class SearchBox extends Component {
         console.log('parsing failed', ex)
       });
       
-    const streamListLink = `https://api.twitch.tv/kraken/streams/?oauth_token=${AUTH_TOKEN}&limit=10`
+    const streamListLink = `https://api.twitch.tv/kraken/streams/?oauth_token=${AUTH_TOKEN}&limit=25`
       
     fetch(streamListLink)
     .then( response => {
@@ -69,14 +69,12 @@ class SearchBox extends Component {
       gameSelectImg: gameImg 
     });
     
-    const streamListLinkGame = `https://api.twitch.tv/kraken/streams/?game=${gameNoSpace}&oauth_token=${AUTH_TOKEN}&limit=15`;
+    const streamListLinkGame = `https://api.twitch.tv/kraken/streams/?game=${gameNoSpace}&oauth_token=${AUTH_TOKEN}&limit=25`;
     
     fetch(streamListLinkGame)
     .then( response => {
-      console.log('LOADING...');
       return response.json();
     }).then(({streams}) => {
-      console.log('LOADED !');
       this.setState({
         streamList : streams,
         loading: false
@@ -84,6 +82,12 @@ class SearchBox extends Component {
     }).catch(function(ex) {
       console.log('parsing failed', ex)
     });
+  }
+  
+  handleItemClick = (index) => {
+    this.setState({activeIndex: index});
+    this.props.dispatch({ type: 'SWITCH_STREAM', payload: this.state.streamList[index] });
+    toggleSearchBox(this.props);
   }
   
   render() {
@@ -98,7 +102,7 @@ class SearchBox extends Component {
             </div>
             <div className="SearchBox__dropdown">
               <div className="game-icon">
-                <img width="36" src={this.state.gameSelectImg} />
+                <img width="36" src={this.state.gameSelectImg} alt="game img"/>
               </div>
               <select onChange={this.handleChange} >
                 <option data-img="https://cdn-images-1.medium.com/fit/c/50/50/1*JpEvZD1Wfo5GvUzdTWsJzQ.png">All Games</option>
@@ -107,11 +111,7 @@ class SearchBox extends Component {
                 )}
               </select>
             </div>
-            {/*
-            <div className="SearchBox__search">
-              <i className="material-icons">search</i>
-              <input type="text" placeholder="Search a live stream" />
-            </div>*/}
+
             <div className="SearchBox__list">
               {this.state.loading ?  (
                 <div className="SearchBox__loading">
@@ -120,20 +120,11 @@ class SearchBox extends Component {
               ) : (
                 <div>
                   {this.state.streamList.map((stream, i) => 
-                    <div className="SearchBox__entry" key={stream.channel._id}>
-                      <div className="stream-entry" title={stream.channel.status}>
-                        <div className="stream-img">
-                          <img src={stream.channel.logo ? stream.channel.logo : ''} width="30" alt="stream-game" />
-                        </div>
-                        <div className="stream-column">
-                          <div className="streamer-name">
-                            {stream.channel.display_name}<span className="streamer-game">{stream.channel.game}</span>
-                          </div>
-                          <div className="streamer-title">{stream.channel.status}</div>
-                          <div className="streamer-viewers"><i className="material-icons">visibility</i> &nbsp; {stream.viewers}</div>
-                        </div>
-                      </div>
-                    </div>
+                    <StreamEntry 
+                      stream={stream} 
+                      index={i}
+                      onClick={this.handleItemClick}
+                      key={stream.channel._id} />
                   )}
                 </div>
               )}
