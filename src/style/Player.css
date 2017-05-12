@@ -38,6 +38,7 @@
   text-align: left;
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
   align-items: center;
   background-color: rgba(136, 106, 234, 0.3);
   color: #222;
@@ -85,7 +86,7 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  max-width: calc(100% - 70px);
+  max-width: calc(100% - 170px);
 }
 
 .side-header_text{
