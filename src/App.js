@@ -51,7 +51,6 @@ class App extends Component {
             loading: false
           });
           this.props.dispatch({ type: 'SET_USER', payload: this.state.userInfo })
-          console.log(this.state.userInfo);
         }).catch(function(ex) {
           console.log('parsing failed', ex)
         });

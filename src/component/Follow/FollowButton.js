@@ -12,13 +12,14 @@ class FollowButton extends Component {
     this.state = {
       following: true
     }
-    this.handleClick = this.handleClick.bind(this);
+    this.handeClick = this.handleClick.bind(this);
   }
   
-  componentDidMount(){
-    const AUTH_TOKEN = this.props.connected.token;
-    const userId = this.props.userInfo._id;
-    const channelId = this.props.currentStream.channel._id;
+  
+  componentWillReceiveProps(nextProps){
+    const AUTH_TOKEN = nextProps.connected.token;
+    const userId = nextProps.userInfo._id;
+    const channelId = nextProps.currentStream.channel._id;
     
     const isFollowingChannelLink = `https://api.twitch.tv/kraken/users/${userId}/follows/channels/${channelId}/?oauth_token=${AUTH_TOKEN}`;
     
@@ -33,47 +34,33 @@ class FollowButton extends Component {
     .then( response => {
         return response.json()
       }).then( (response) => {
-        console.log('SALUUUUUUUT', response);
-        if (response.channel){
-          this.setState({
-            following : true
-          })
-        } else {
-          this.setState({
-            following: false
-          })
-        }  
-        console.log('ICI', this.state.following);
+          if (response.channel){
+            this.setState({
+              following : true
+            });
+          } else {
+            this.setState({
+              following : false
+            });
+          }
       });
   }
   
   handleClick() {
-          
-    /*
-    fetch(`https://api.twitch.tv/kraken/users/${userId}/follows/channels/${channelId}`, {
-      method: 'PUT',
-      headers: {
-        'Accept': 'application/vnd.twitchtv.v5+json',
-        'Authorization': `OAuth 3b7pn277dpsemp5hk9i90bm33630sl`
-      },
-    }).then((response) => {
-      console.log(response)
-    });
-    */
+    console.log('salut');
   }
 
   render() {
-    console.log(this.state.following);
     if (!this.state.following){
       return(
         <div className="follow-button follow-button--nofollow" id={this.props.currentStream.channel._id} onClick={this.handleClick}>
-          <div className="follow-button__text">Follow</div>
+          <div className="follow-button__text">Follow {this.state.following}</div>
         </div>
       )
     } else {
       return(
         <div className="follow-button follow-button--followed" id={this.props.currentStream.channel._id} onClick={this.handleClick}>
-          <div className="follow-button__text">Unfollow</div>
+          <div className="follow-button__text">Unfollow  {this.state.following}</div>
         </div>
       )
     }
