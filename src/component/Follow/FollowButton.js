@@ -67,8 +67,6 @@ class FollowButton extends Component {
           following : !this.state.following
         });
         return response.json()
-      }).then( response => {
-        console.log(response);
       });
   }
 

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import TwitchLoginBtn from './Header/TwitchLoginBtn';
 import UserDropdown from './Header/UserDropdown';
 
 class LoginBtn extends Component {
@@ -10,9 +9,7 @@ class LoginBtn extends Component {
         <UserDropdown username={this.props.username}/>
       )
     } else {
-      return (
-        <TwitchLoginBtn />
-      );
+      return (null);
     }
   }
 }

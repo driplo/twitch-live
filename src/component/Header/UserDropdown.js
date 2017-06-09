@@ -7,12 +7,20 @@ class UserDropdown extends Component {
     this.state = {
       active: false
     };
+    this.handleClickDisconnect = this.handleClickDisconnect.bind(this);
   }
   
   handleClick(){
     this.setState({
       active: this.state.active ? false : true
     });
+  }
+  
+  handleClickDisconnect(){
+    localStorage.setItem('AUTH_CONNECTED', false);
+    localStorage.removeItem('AUTH_TOKEN');
+    localStorage.removeItem('USER_INFO');
+    window.location.reload();
   }
 
   render() {
@@ -26,7 +34,7 @@ class UserDropdown extends Component {
         </div>
         <div className="dropdown-menu">
           <ul>
-            <a href="/"><li>Disconnect</li></a>
+            <a onClick={this.handleClickDisconnect}><li>Disconnect</li></a>
           </ul>
         </div>
       </div>
