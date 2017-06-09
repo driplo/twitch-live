@@ -4,7 +4,6 @@ import { connect } from 'react-redux'
 import '../../style/Follow.css';
 
 
-
 class FollowButton extends Component {
   
   constructor(props) {
@@ -12,11 +11,10 @@ class FollowButton extends Component {
     this.state = {
       following: true
     }
-    this.handeClick = this.handleClick.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
   
-  
-  componentWillReceiveProps(nextProps){
+  componentWillReceiveProps(nextProps) {
     const AUTH_TOKEN = nextProps.connected.token;
     const userId = nextProps.userInfo._id;
     const channelId = nextProps.currentStream.channel._id;
@@ -46,8 +44,32 @@ class FollowButton extends Component {
       });
   }
   
-  handleClick() {
-    console.log('salut');
+  handleClick(event) {
+    const AUTH_TOKEN = this.props.connected.token;
+    const userId = this.props.userInfo._id;
+    const channelId = this.props.currentStream.channel._id;
+    const followLink = `https://api.twitch.tv/kraken/users/${userId}/follows/channels/${channelId}`;
+    
+    let methodFetch = '';
+    
+    this.state.following ? methodFetch = 'DELETE' : methodFetch = 'PUT';
+    
+    fetch( followLink, {
+      method: methodFetch,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `OAuth ${AUTH_TOKEN}`,
+        'Accept': 'application/vnd.twitchtv.v5+json'
+      }
+    })
+    .then( response => {
+        this.setState({
+          following : !this.state.following
+        });
+        return response.json()
+      }).then( response => {
+        console.log(response);
+      });
   }
 
   render() {
@@ -65,6 +87,7 @@ class FollowButton extends Component {
       )
     }
   }
+  
 }
 
 export default connect(state => ({ userInfo : state.userInfo, connected : state.connected, currentStream: state.currentStream }))(FollowButton);
