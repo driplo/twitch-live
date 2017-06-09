@@ -45,12 +45,12 @@ class App extends Component {
         .then( response => { 
           return response.json(); 
         }).then(response => {
-                  
           this.setState({
             userInfo: response,
             username: response.name,
             loading: false
           });
+          this.props.dispatch({ type: 'SET_USER', payload: this.state.userInfo })
         }).catch(function(ex) {
           console.log('parsing failed', ex)
         });

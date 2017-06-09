@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import LoginButton from './Login/LoginButton';
+import FollowButton from './Follow/FollowButton';
 
 class TwitchPlayer extends Component {
   
@@ -30,6 +31,7 @@ class TwitchPlayer extends Component {
                   <a href={this.props.currentStream.channel.url}>{this.props.currentStream.channel.name}</a>
                 </div>
               </div>
+              <FollowButton />
             </div>
           </div>
         )

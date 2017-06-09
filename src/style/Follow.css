@@ -1,0 +1,56 @@
+.follow-button{
+  width: auto;
+  padding-left: 10px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #6441a4;
+  color: #fff;
+  justify-content: space-between;
+  font-size: 12px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.follow-button__text{
+  display: flex;
+  flex: 1;
+  text-align: center;
+  justify-content: flex-end;
+  align-items: center;
+  height: 100%;
+}
+
+.follow-button__text:after{
+  font-family: 'Material Icons';
+  content: 'favorite';
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  margin-left: 0;
+  font-size: 14px;
+  margin-left: 5px;
+}
+
+.follow-button--nofollow .follow-button__text:after{
+  content: 'favorite_border';
+}
+
+.follow-button--followed:hover .follow-button__text:after{
+  content: 'favorite_border';
+}
+
+.follow-button--nofollow:hover .follow-button__text:after{
+  content: 'favorite';
+}
+
+.follow-button--followed:hover .follow-button__text:after{
+  background-color: #F44336;
+}
+
+.follow-button--nofollow:hover .follow-button__text:after{
+  background-color: #4CAF50;
+}
