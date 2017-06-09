@@ -16,7 +16,7 @@ class Player extends Component {
 
     if (this.props.token !== ''){
 
-      this.props.dispatch({ type: 'CONNECT', payload: { online: true, token: this.props.token } })
+      // this.props.dispatch({ type: 'CONNECT', payload: { online: true, token: this.props.token } });
       
       const AUTH_TOKEN = this.props.token;
       
@@ -36,9 +36,6 @@ class Player extends Component {
         }).catch(function(ex) {
           console.log('parsing failed', ex)
         });
-        
-        
-
     } else {
       this.props.dispatch({ type: 'CONNECT', payload: { online: false, token: '' } })
     }

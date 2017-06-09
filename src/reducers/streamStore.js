@@ -1,9 +1,7 @@
 const defaultState = {
   connected : {
     online: false,
-    token: '',
-    user_id: '',
-    remember: false
+    token: ''
   },
   userInfo : {},
   streamList : [],
@@ -19,8 +17,12 @@ const defaultState = {
 const playerStore = (state = defaultState, action) => {
   switch(action.type) {
     case 'CONNECT':
-      return { ...state, connected:{ online: action.payload.online, token: action.payload.token, user_id: action.payload.user_id ,remember: action.payload.remember }  }
+      localStorage.setItem('AUTH_CONNECTED', action.payload.online);
+      localStorage.setItem('AUTH_TOKEN', action.payload.token);
+      return { ...state, connected:{ online: action.payload.online, token: action.payload.token }  }
     case 'SET_USER':
+      const stringUser = JSON.stringify(action.payload);
+      localStorage.setItem('USER_INFO', stringUser);
       return { ...state, userInfo : action.payload}
     case 'SWITCH_STREAM':
       if (action.payload !== false){
