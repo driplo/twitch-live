@@ -39,25 +39,40 @@ class SearchBox extends Component {
     const game = event.target.value;
     const gameNoSpace = game.replace(/ /g, "%20");
     
-    
-        
     this.setState({
       gameSelectImg: gameImg 
     });
     
-    const streamListLinkGame = `https://api.twitch.tv/kraken/streams/?game=${gameNoSpace}&oauth_token=${AUTH_TOKEN}&limit=25`;
-    
-    fetch(streamListLinkGame)
-    .then( response => {
-      return response.json();
-    }).then(({streams}) => {
-      this.props.dispatch({ type: 'SET_SEARCHBOX_LIST', payload: streams });
-      this.setState({
-        loading: false
+    if (event.target[event.target.selectedIndex].getAttribute('data-game') != 'All'){
+      const streamListLinkGame = `https://api.twitch.tv/kraken/streams/?game=${gameNoSpace}&oauth_token=${AUTH_TOKEN}&limit=25`;
+      
+      fetch(streamListLinkGame)
+      .then( response => {
+        return response.json();
+      }).then(({streams}) => {
+        this.props.dispatch({ type: 'SET_SEARCHBOX_LIST', payload: streams });
+        this.setState({
+          loading: false
+        });
+      }).catch(function(ex) {
+        console.log('parsing failed', ex)
       });
-    }).catch(function(ex) {
-      console.log('parsing failed', ex)
-    });
+    } else {
+      const streamListLink = `https://api.twitch.tv/kraken/streams/?oauth_token=${AUTH_TOKEN}&limit=25`
+        
+      fetch(streamListLink)
+      .then( response => {
+        return response.json();
+      }).then(({streams}) => {
+        this.props.dispatch({ type: 'SET_SEARCHBOX_LIST', payload: streams });
+        this.setState({
+          loading: false
+        });
+      }).catch(function(ex) {
+        console.log('parsing failed', ex)
+      });
+    }
+    
   }
   
   handleItemClick = (index) => {
@@ -82,7 +97,7 @@ class SearchBox extends Component {
                 <img width="36" src={this.state.gameSelectImg} alt="game img"/>
               </div>
               <select onChange={this.handleChange} >
-                <option data-img="https://cdn-images-1.medium.com/fit/c/50/50/1*JpEvZD1Wfo5GvUzdTWsJzQ.png">All Games</option>
+                <option data-img="https://cdn-images-1.medium.com/fit/c/50/50/1*JpEvZD1Wfo5GvUzdTWsJzQ.png" data-game="All">All Games</option>
                 {gameList.map((gameEntry, i) => 
                   <option data-img={gameEntry.game.box.small} value={gameEntry.game.name} key={gameEntry.game._id}>{gameEntry.game.name}</option>
                 )}
