@@ -10,18 +10,15 @@ class SearchBoxButton extends Component {
     this.state = {
       searchList: []
     };
-    
   }
   
   
   render() {
     return(
-      
       <div className="side-header__search">
         <SearchIcon />
       </div>
     )
-
   }
 }
 
