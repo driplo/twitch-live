@@ -10,9 +10,9 @@ class SearchBox extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      loading: true,
       gameList: [],
       streamList : [],
-      loading: false,
       gameSelectImg: 'https://cdn-images-1.medium.com/fit/c/50/50/1*JpEvZD1Wfo5GvUzdTWsJzQ.png'
     };
     this.handleChange = this.handleChange.bind(this);
@@ -20,34 +20,8 @@ class SearchBox extends Component {
   }
   
   componentWillMount(){
-    const AUTH_TOKEN = this.props.connected.token;
-    const gameListLink = `https://api.twitch.tv/kraken/games/top?oauth_token=${AUTH_TOKEN}&limit=25`;
     this.setState({
-      loading : true
-    });
-    fetch(gameListLink)
-      .then( response => {
-        return response.json(); 
-      }).then( (responseData) => {        
-        this.setState({
-          gameList : responseData.top,
-        });
-      }).catch(function(ex) {
-        console.log('parsing failed', ex)
-      });
-      
-    const streamListLink = `https://api.twitch.tv/kraken/streams/?oauth_token=${AUTH_TOKEN}&limit=25`
-      
-    fetch(streamListLink)
-    .then( response => {
-      return response.json();
-    }).then(({streams}) => {
-      this.setState({
-        streamList : streams,
-        loading: false
-      });
-    }).catch(function(ex) {
-      console.log('parsing failed', ex)
+      loading: false
     });
   }
   
@@ -64,6 +38,8 @@ class SearchBox extends Component {
     
     const game = event.target.value;
     const gameNoSpace = game.replace(/ /g, "%20");
+    
+    
         
     this.setState({
       gameSelectImg: gameImg 
@@ -75,8 +51,8 @@ class SearchBox extends Component {
     .then( response => {
       return response.json();
     }).then(({streams}) => {
+      this.props.dispatch({ type: 'SET_SEARCHBOX_LIST', payload: streams });
       this.setState({
-        streamList : streams,
         loading: false
       });
     }).catch(function(ex) {
@@ -91,7 +67,8 @@ class SearchBox extends Component {
   }
   
   render() {
-  
+    const gameList = this.props.searchBoxGames;
+    const streamList = this.props.searchBoxList;
     if (this.props.searchBoxActive){
       return(
         <div className="SearchBox">
@@ -106,7 +83,7 @@ class SearchBox extends Component {
               </div>
               <select onChange={this.handleChange} >
                 <option data-img="https://cdn-images-1.medium.com/fit/c/50/50/1*JpEvZD1Wfo5GvUzdTWsJzQ.png">All Games</option>
-                {this.state.gameList.map((gameEntry, i) => 
+                {gameList.map((gameEntry, i) => 
                   <option data-img={gameEntry.game.box.small} value={gameEntry.game.name} key={gameEntry.game._id}>{gameEntry.game.name}</option>
                 )}
               </select>
@@ -119,7 +96,7 @@ class SearchBox extends Component {
                 </div>
               ) : (
                 <div>
-                  {this.state.streamList.map((stream, i) => 
+                  {streamList.map((stream, i) => 
                     <StreamEntry 
                       stream={stream} 
                       index={i}
@@ -137,12 +114,9 @@ class SearchBox extends Component {
      else {
        return (null)
      }
-    
-    
-
   }
 }
 
 
-export default connect(state => ({ connected : state.connected, searchBoxActive: state.searchBoxActive }))(SearchBox);
+export default connect(state => ({ connected : state.connected, searchBoxActive: state.searchBoxActive, searchBoxGames : state.searchBoxGames, searchBoxList : state.searchBoxList }))(SearchBox);
 

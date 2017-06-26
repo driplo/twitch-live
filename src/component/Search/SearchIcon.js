@@ -12,6 +12,29 @@ class SearchIcon extends Component {
   }
   
   handleClick(event){
+    const AUTH_TOKEN = this.props.connected.token;
+    const gameListLink = `https://api.twitch.tv/kraken/games/top?oauth_token=${AUTH_TOKEN}&limit=25`;
+
+    
+    fetch(gameListLink)
+      .then( response => {
+        return response.json(); 
+      }).then( (responseData) => {
+        this.props.dispatch({ type: 'SET_SEARCHBOX_GAMES', payload: responseData.top });
+      }).catch(function(ex) {
+        console.log('parsing failed', ex)
+      });
+      
+    const streamListLink = `https://api.twitch.tv/kraken/streams/?oauth_token=${AUTH_TOKEN}&limit=25`
+      
+    fetch(streamListLink)
+    .then( response => {
+      return response.json();
+    }).then(({streams}) => {
+      this.props.dispatch({ type: 'SET_SEARCHBOX_LIST', payload: streams });
+    }).catch(function(ex) {
+      console.log('parsing failed', ex)
+    });
     toggleSearchBox(this.props);
   }
   
@@ -27,4 +50,4 @@ class SearchIcon extends Component {
 }
 
 
-export default connect()(SearchIcon);
+export default connect(state => ({ connected : state.connected}))(SearchIcon);

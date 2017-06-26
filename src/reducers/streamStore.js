@@ -11,7 +11,9 @@ const defaultState = {
     }
   },
   cinemaMode: false,
-  searchBoxActive: false
+  searchBoxActive: false,
+  searchBoxGames : [],
+  searchBoxList : []
 }
 
 const playerStore = (state = defaultState, action) => {
@@ -38,6 +40,10 @@ const playerStore = (state = defaultState, action) => {
       return { ...state, error: action.payload }
     case 'UPDATE_PLAYER':
       return { ...state, streamList: action.payload }
+    case 'SET_SEARCHBOX_GAMES':
+      return { ...state, searchBoxGames: action.payload }
+    case 'SET_SEARCHBOX_LIST':
+      return { ...state, searchBoxList: action.payload }
     default:
       return state
   }
