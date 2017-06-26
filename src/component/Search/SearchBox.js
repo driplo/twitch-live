@@ -26,6 +26,9 @@ class SearchBox extends Component {
   }
   
   handleClick(event){
+    this.setState({
+      gameSelectImg: 'https://cdn-images-1.medium.com/fit/c/50/50/1*JpEvZD1Wfo5GvUzdTWsJzQ.png'
+    });
     toggleSearchBox(this.props);
   }
   
@@ -43,7 +46,7 @@ class SearchBox extends Component {
       gameSelectImg: gameImg 
     });
     
-    if (event.target[event.target.selectedIndex].getAttribute('data-game') != 'All'){
+    if (event.target[event.target.selectedIndex].getAttribute('data-game') !== 'All'){
       const streamListLinkGame = `https://api.twitch.tv/kraken/streams/?game=${gameNoSpace}&oauth_token=${AUTH_TOKEN}&limit=25`;
       
       fetch(streamListLinkGame)
@@ -76,14 +79,19 @@ class SearchBox extends Component {
   }
   
   handleItemClick = (index) => {
-    this.setState({activeIndex: index});
-    this.props.dispatch({ type: 'SWITCH_STREAM', payload: this.state.streamList[index] });
+    this.setState({
+      activeIndex: index,
+      gameSelectImg: 'https://cdn-images-1.medium.com/fit/c/50/50/1*JpEvZD1Wfo5GvUzdTWsJzQ.png'
+    });
+    
+    this.props.dispatch({ type: 'SWITCH_STREAM', payload: this.props.searchBoxList[index] });
     toggleSearchBox(this.props);
   }
   
-  render() {
+  render() {    
     const gameList = this.props.searchBoxGames;
     const streamList = this.props.searchBoxList;
+    
     if (this.props.searchBoxActive){
       return(
         <div className="SearchBox">
