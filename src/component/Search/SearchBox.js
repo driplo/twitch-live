@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Scrollbars } from 'react-custom-scrollbars';
 
 import { toggleSearchBox } from '../../actions/playerActions';
 import StreamEntry from '../StreamEntry';
@@ -118,7 +119,7 @@ class SearchBox extends Component {
                   <img src={loading} alt="Loading" />
                 </div>
               ) : (
-                <div>
+                <Scrollbars style={{height: 320}} autoHide autoHideTimeout={500}>
                   {streamList.map((stream, i) => 
                     <StreamEntry 
                       stream={stream} 
@@ -126,7 +127,7 @@ class SearchBox extends Component {
                       onClick={this.handleItemClick}
                       key={stream.channel._id} />
                   )}
-                </div>
+                </Scrollbars>
               )}
               
             </div>

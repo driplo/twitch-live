@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import { Scrollbars } from 'react-custom-scrollbars';
+
 import { connect } from 'react-redux'
 
 import StreamEntry from './StreamEntry';
@@ -21,7 +23,7 @@ class StreamList extends Component {
     const streamNow = this.props.currentStream;
     
     return(
-      <div className="StreamList">
+      <Scrollbars style={{ height: 'calc(100% - 50px)' }} autoHide autoHideTimeout={500} className="StreamList">
         {this.props.streamList.map((stream, i) => 
           <StreamEntry 
             stream={stream} 
@@ -30,7 +32,7 @@ class StreamList extends Component {
             index={i}
             key={stream.channel._id} />
          )}
-      </div>
+      </Scrollbars>
     )
   }
     
